@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+<div class="dark-back">
+
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-lg-6 mx-auto">
+                <p class="font-italic text-white text-center">Upload Your Picture
+                </p>
+                <form method=post id="form1" enctype=multipart/form-data>
+                    <div class="input-group mb-3">
+
+                        <input type=file name=file class="form-control rounded-pill" id="formFile"
+                            onchange="loadFile(event)">
+                    </div>
+                    <input type="hidden" id="slideNumber" name="slidenumber" value="0">
+                </form>
+
+                <!-- Uploaded image area-->
+
+
+                <div class="image-area mt-4"><img id="loaded_image" src="#" alt=""
+                        class="img-fluid rounded shadow-sm mx-auto d-block carousel-img"></div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'carousel.html' %}
+
+<div class="dark-back">
+
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-lg-6 mx-auto">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="rounded-pill btn btn-primary" form="form1">Show Me The
+                        Art</button>
+                </div>
+
+                <!-- Uploaded image area-->
+                {% if data %}
+                <div class="image-area mt-4"><img id="resulted_image"
+                        src="data:image/png;base64,{{ data.processed_img }}" alt=""
+                        class="img-fluid rounded shadow-sm mx-auto d-block carousel-img"></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
